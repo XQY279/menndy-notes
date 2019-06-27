@@ -53,7 +53,7 @@ echo $z; //输出11
 ?>
 ```
 
-**类似代数**
+**类似代数** 
 
 ```
 x=5
@@ -103,7 +103,7 @@ PHP 有三种不同的变量作用域：
 
 
 
-##### Local 和 Global 作用域
+#### Local 和 Global 作用域
 
 函数*之外*声明的变量拥有 Global 作用域，只能在函数以外进行访问。
 
@@ -130,7 +130,7 @@ myTest();// 输出 15
 ?>
 ```
 
-PHP 同时在名为` $GLOBALS[index] `的数组中存储了所有的全局变量。下标存有变量名。这个数组在函数内也可以访问，并能够用于直接更新全局变量。 
+PHP 同时在名为` $GLOBALS[index] `的数组中存储了所有的全局变量。下标存有变量名。这个数组在函数内也可以访问，并能够用于直接更新全局变量。 在所有PHP代码中 该段代码均生效
 
 ```php
 <?php
@@ -143,6 +143,207 @@ function myTest() {
 
 myTest();
 echo $y; // 输出 15
+?>
+```
+
+
+
+##### Static 关键字
+
+通常，当函数完成/执行后，会删除所有变量。不过，有时我需要不删除某个局部变量。实现这一点需要更进一步的工作。
+
+要完成这一点，请在您首次声明变量时使用 *static* 关键词：
+
+```php
+<?php
+function myTest() {
+   static $x=0;
+   echo $x;
+   $x++;
+}
+
+myTest(); //0
+myTest(); //1
+myTest(); //2
+myTest(); //3
+myTest(); //4
+?> 
+```
+
+
+
+### 引入PHP文件
+
+`require_once()` 与 `include_once()`  :
+
+> 两者区别 前者如果引用路径发生错误会全员报错影响执行，后者报错但不影响当前文件的执行
+
+```php
+a.php
+
+<?php
+    $GLOBALS['b'] = "i am b"
+?>
+```
+
+```php
+index.php
+  
+<?php
+    require_once('a.php');
+    echo $GLOBALS['b']; //输出 i am b
+?>
+```
+
+
+
+### PHP数据类型
+
+1. String（字符串）
+2. Integer（整型）
+3. Float（浮点型）
+4. Boolean（布尔型） 
+5. Array（数组）
+6. Object（对象）
+7. NULL（空值）
+
+
+
+#### String（字符串）
+
+```php
+<?php 
+$x = 'Hello world!';
+echo $x;
+?>
+```
+
+
+
+#### Integer（整型）
+
+整数是没有小数的数字。
+
+整数规则：
+
+- 整数必须有至少一个数字（0-9）
+- 整数不能包含逗号或空格
+- 整数不能有小数点
+- 整数正负均可
+- 可以用三种格式规定整数：十进制、十六进制（前缀是 0x）或八进制（前缀是 0）
+
+在下面的例子中，我们将测试不同的数字。PHP var_dump() 会返回变量的数据类型和值：
+
+```php
+<?php 
+$x = 5985;
+var_dump($x); //int(5985) 
+echo "<br>"; 
+$x = -345; // 负数
+var_dump($x); //int(-345) 
+echo "<br>"; 
+$x = 0x8C; // 十六进制数
+var_dump($x); //int(140) 
+echo "<br>";
+$x = 047; // 八进制数
+var_dump($x); //int(39)
+?>
+```
+
+
+
+#### Float（浮点型）
+
+浮点数是有小数点或指数形式的数字。
+
+```php
+<?php 
+$x = 10.365;
+var_dump($x); //float(10.365) 
+echo "<br>"; 
+$x = 2.4e3;
+var_dump($x); //float(2400) 
+echo "<br>"; 
+$x = 8E-5;
+var_dump($x); //float(8.0E-5)
+?>
+```
+
+
+
+#### Boolean（布尔型） 
+
+逻辑是 true 或 false。
+
+```php
+$x=true;
+$y=false;
+```
+
+
+
+#### Array（数组）
+
+数组在一个变量中存储多个值。
+
+```php
+<?php 
+$cars=array("Volvo","BMW","SAAB");
+var_dump($cars); 
+//array(3) { [0]=> string(5) "Volvo" [1]=> string(3) "BMW" [2]=> string(4) "SAAB" }
+?>
+```
+
+```php
+<?php 
+$arr = array('苹果', "香蕉", "橘子");
+echo json_encode($arr); //会输出json格式
+echo $arr[0] //输出数组的第1位 '苹果'
+?>
+```
+
+
+
+#### Object（对象）
+
+对象是存储数据和有关如何处理数据的信息的数据类型。
+
+在 PHP 中，必须明确地声明对象。
+
+首先我们必须声明对象的类。对此，我们使用 class 关键词。类是包含属性和方法的结构。
+
+然后我们在对象类中定义数据类型，然后在该类的实例中使用此数据类型
+
+```php
+<?php
+class Car
+{
+  var $color;
+  function Car($color="green") {
+    $this->color = $color;
+  }
+  function what_color() {
+    return $this->color;
+  }
+}
+?>
+```
+
+
+
+#### NULL（空值）
+
+特殊的 NULL 值表示变量无值。NULL 是数据类型 NULL 唯一可能的值。
+
+NULL 值标示变量是否为空。也用于区分空字符串与空值数据库。
+
+可以通过把值设置为 NULL，将变量清空：
+
+```php
+<?php
+$x="Hello world!";
+$x=null;
+var_dump($x);  //NULL
 ?>
 ```
 
