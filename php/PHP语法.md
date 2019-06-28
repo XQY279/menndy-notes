@@ -172,31 +172,6 @@ myTest(); //4
 
 
 
-### 引入PHP文件
-
-`require_once()` 与 `include_once()`  :
-
-> 两者区别 前者如果引用路径发生错误会全员报错影响执行，后者报错但不影响当前文件的执行
-
-```php
-a.php
-
-<?php
-    $GLOBALS['b'] = "i am b"
-?>
-```
-
-```php
-index.php
-  
-<?php
-    require_once('a.php');
-    echo $GLOBALS['b']; //输出 i am b
-?>
-```
-
-
-
 ### PHP数据类型
 
 1. String（字符串）
