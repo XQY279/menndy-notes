@@ -61,7 +61,7 @@ SVG元素对象一般通过调用setAttribute()方法来设定属性值
 
 6、stroke-linejoin:bevel/round/miter; 两线焦点的样式 
 
-![../image/0254.png](/Users/xiangqingyuan/Desktop/notes/image/0254.png)
+![../image/0254.png](../image/0254.png)
 
 
 
@@ -81,7 +81,7 @@ d: 定义路径指令:
 
 ​	(起始点x  起始点y  旋转  顺逆时针  取大弧/小弧  终点x  终点y)
 
-![image-20181007160929942](/Users/xiangqingyuan/Desktop/notes/image/image-20181007160929942.png)
+![image-20181007160929942](../image/image-20181007160929942.png)
 
 ​	Z = closepath关闭路径
 
@@ -194,8 +194,8 @@ http://www.w3school.com.cn/svg/svg_filters_intro.asp
 
 **Canvas VS SVG**  
 
-![](/Users/xiangqingyuan/Desktop/notes/image/canvas1.png)
+![](../image/canvas1.png)
 
-![](/Users/xiangqingyuan/Desktop/notes/image/canvas2.png)
+![](../image/canvas2.png)
 
 ## 

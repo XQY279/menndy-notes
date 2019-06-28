@@ -10,9 +10,9 @@
 
 
 
-![image-20181009162744775](/Users/xiangqingyuan/Desktop/notes/image/worker1.png)
+![image-20181009162744775](../image/worker1.png)
 
-![image-20181009162753549](/Users/xiangqingyuan/Desktop/notes/image/worker2.png)
+![image-20181009162753549](../image/worker2.png)
 
 
 

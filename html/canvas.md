@@ -106,7 +106,7 @@ bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
 
 
 
-![二次贝塞尔曲线](/Users/xiangqingyuan/Desktop/notes/image/1415845715278-bezier-quadratic-animation.gif)
+![二次贝塞尔曲线](../image/1415845715278-bezier-quadratic-animation.gif)
 
 
 
@@ -122,7 +122,7 @@ lineJoin: 两线拐角处miter /round /bevel
 
 miterLimit: 绘制焦点方式
 
-![fullsizerender](/Users/xiangqingyuan/Desktop/notes/image/fullsizerender.jpg)
+![fullsizerender](../image/fullsizerender.jpg)
 
 
 
@@ -193,7 +193,7 @@ img:图片，画布，视频元素
 
 
 
-![fullsizerender(/Users/xiangqingyuan/Desktop/notes/image/fullsizerender(1).jpg)](../image/fullsizerender(1).jpg)
+![](../image/fullsizerender(1).jpg)
 
 ​		刮刮乐效果：
 

@@ -48,7 +48,7 @@
 
 ie6混杂模式盒模型 把padding border都缩在width里面了，导致content区域变小 
 
-![](/Users/xiangqingyuan/Desktop/notes/image/box.png)
+![](../image/box.png)
 
 **HTML5新特性** 
 

@@ -11,7 +11,7 @@
 7. aside 元素表示一个页面的一部分，它的内容跟这个页面的其他内容的关联性不强，或者没有关联，单独存在。
 8. figure 标签规定独立的流内容（图像 图表 照片 代码等等）。
 
-![](/Users/xiangqingyuan/Desktop/notes/image/buju.png)
+![](../image/buju.png)
 
 ​                                     
 

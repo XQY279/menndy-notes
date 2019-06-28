@@ -1,7 +1,3 @@
-[TOC]
-
-
-
 # HTML
 
 1. [HTML常用标签](./tag.md)
