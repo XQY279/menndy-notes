@@ -35,7 +35,7 @@
 
 #### 增删改查
 
-**增加** `insert` 
+**增加** `INSERT` 
 
 ```sql
 INSERT INTO `news`(`newsid`, `newstitle`, `newsimage`, `newstontent`, `addtime`) VALUES (1, 'title', 'imageurl', 'content', '2018-10-12')
