@@ -7,6 +7,7 @@
 - [运算符](#运算符) 
 
 - [PHP 变量作用域](#PHP变量作用域) 
+- [PHP常量](#PHP常量) 
 
 - [运算符](#运算符) 
 
@@ -86,6 +87,12 @@ if(isset($a)){
 
 1. String（字符串）
 
+使用`strlen()`函数求取字符串的长度
+
+```php
+echo strlen("Hello world!");  //12
+```
+
 ```php
 // 变量以$开始
 // 变量可以以字母或者下划线开头，后面可以跟着数字、字母和下划线
@@ -107,14 +114,14 @@ print "a:${string}"; //=>'a:aaaa'
 // 自 PHP 5.3 开始, nowdocs 可以被用作多行非计算型字符串  <<<
 //在该运算符之后要提供一个标识符，然后换行。接下来是字符串 string 本身，最后要用前面定义的标识符作为结束标志。
 $nowdoc = <<<'END'
-Multi line
-string
+  Multi line
+  string
 END;
 
 // 而Heredocs则可以用作多行计算型字符串 与 非计算型的差别只是 开头标识符是否有引号的差别
 $heredoc = <<<END
-Multi line
-$sgl_quotes
+  Multi line
+  $sgl_quotes
 END;
 
 // 字符串需要用 . 来连接
@@ -152,11 +159,21 @@ $float = 7E-10;
 // 布尔值是大小写无关的
 $boolean = true;  // 或 TRUE 或 True
 $boolean = false; // 或 FALSE 或 False
+echo var_dump(0 === '0'); // => bool(false)
 ```
 
 
 
 5. Array（数组）
+
+获取数组的长度的方法
+
+```php
+<?php 
+$cars=array("Volvo","BMW","Toyota"); 
+echo count($cars); // => 3
+?> 
+```
 
 ```php
 // PHP 中的数组都是关联型数组，也就是某些语言中的哈希表或字典
@@ -307,6 +324,43 @@ myTest(); //4
 
 
 
+### PHP常量
+
+常量是一个简单值的标识符。该值在脚本中不能改变。
+
+一个常量由英文字母、下划线、和数字组成,但数字不能作为首字母出现。 (常量名不需要加 $ 修饰符)。
+
+注意： 常量在整个脚本中都可以使用。
+
+##### 设置常量，使用 define() 函数，函数语法如下
+
+```php
+define ( string $name , mixed $value [, bool $case_insensitive = false ] )
+```
+
+- name**：**必选参数，常量名称，即标志符。
+- value**：**必选参数，常量的值。
+- case_insensitive ：可选参数，如果设置为 TRUE，该常量则大小写不敏感。默认是大小写敏感的。
+
+```php
+// 区分大小写的常量名
+define("GREETING", "欢迎访问 Runoob.com");
+echo GREETING;    // 输出 "欢迎访问 Runoob.com"
+echo greeting; // 输出 "greeting"
+
+// 不区分大小写的常量名
+define("GREETING", "欢迎访问 Runoob.com", true);
+echo greeting;  // 输出 "欢迎访问 Runoob.com"
+```
+
+
+
+
+
+
+
+
+
 ### 运算符
 
 ```php
@@ -316,7 +370,7 @@ $difference = 2 - 1; // 1
 $product    = 2 * 2; // 4
 $quotient   = 2 / 1; // 2
 
-// 算数运算的简写
+// 赋值运算
 $number = 0;
 $number += 1;      // $number 自增1
 echo $number++;    // 输出1 (运算后自增)
@@ -325,9 +379,48 @@ $number /= $float; // 先除后赋值给 $number
 
 ```
 
+##### 比较运算符
+
+比较操作符可以让您比较两个值：
+
+| 运算符  | 名称       | 描述                                           | 实例               |
+| :------ | :--------- | :--------------------------------------------- | :----------------- |
+| x == y  | 等于       | 如果 x 等于 y，则返回 true                     | 5==8 返回 false    |
+| x === y | 绝对等于   | 如果 x 等于 y，且它们类型相同，则返回 true     | 5==="5" 返回 false |
+| x != y  | 不等于     | 如果 x 不等于 y，则返回 true                   | 5!=8 返回 true     |
+| x <> y  | 不等于     | 如果 x 不等于 y，则返回 true                   | 5<>8 返回 true     |
+| x !== y | 绝对不等于 | 如果 x 不等于 y，或它们类型不相同，则返回 true | 5!=="5" 返回 true  |
+| x > y   | 大于       | 如果 x 大于 y，则返回 true                     | 5>8 返回 false     |
+| x < y   | 小于       | 如果 x 小于 y，则返回 true                     | 5<8 返回 true      |
+| x >= y  | 大于等于   | 如果 x 大于或者等于 y，则返回 true             | 5>=8 返回 false    |
+| x <= y  | 小于等于   | 如果 x 小于或者等于 y，则返回 true             | 5<=8 返回 true     |
+
+
+
+##### 组合比较
+
+PHP7+ 支持组合比较符（combined comparison operator）也称之为太空船操作符，符号为 **<=>**。组合比较运算符可以轻松实现两个变量的比较，当然不仅限于数值类数据的比较。
+
+语法格式如下：
+
+```php
+$c = $a <=> $b;
+```
+
+解析如下：
+
+- 如果 `$a `> `$b`, 则 `$c` 的值为 1。
+- 如果 `$a` == `$b` , 则 `$c `的值为 0。
+- 如果 `$a ` < `$b`, 则 `$c `的值为 -1。
+
 
 
 ### 输出
+
+`echo` 与 `print` 的区别
+
+- echo - 可以输出一个或多个字符串
+- print - 只允许输出一个字符串，返回值总为 1
 
 ```php
 echo('Hello World!');
