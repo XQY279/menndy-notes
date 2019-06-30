@@ -78,7 +78,7 @@ echo $_SESSION['views']; //输出100
 
 
 
-#### 超全局变量
+#### 接受请求的超全局变量
 
 - $_REQUEST
 - $_POST
