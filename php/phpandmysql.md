@@ -76,3 +76,50 @@ mysqli_query ( mysqli $link , string $query)
 
 
 
+#### 实例：
+
+```html
+<body>
+    <form action="mysql.php" method="POST">
+        <label for="">新闻标题</label>
+        <input type="text" name="newstitle" id="newstitle"><br>
+        <label for="">图片地址</label>
+        <input type="text" name="newsimage" id="newsimage"><br>
+        <label for="">新闻内容</label>
+        <textarea rows="5" cols="30" type="text" name="newstontent" id="newstontent"></textarea><br>
+        <label for="">上传时间</label>
+        <input type="date" name="addtime" id="addtime"><br>
+        <input type="submit" value="submit" id="submit">
+        <input type="reset" value="reset">
+    </form>
+</body>
+```
+
+```php
+<?php
+    header("Content-type:application/json;charset=utf-8");
+    $con = mysqli_connect("localhost","root","");
+    if(!$con){
+      die('Could not connect: ' . mysqli_error($con));
+    }else{
+        mysqli_select_db( $con, "phplesson");//选择哪个数据库
+        mysqli_query($con, "SET NAMES 'utf8'");
+        $newstitle = $_REQUEST['newstitle'];
+        $newsimage = $_REQUEST['newsimage'];
+        $newstontent = $_REQUEST['newstontent'];
+        $addtime = $_REQUEST['addtime'];
+        $sql = "INSERT INTO `news`( `newstitle`, `newsimage`, `newstontent`, `addtime`) VALUES ('".
+                                    $newstitle."','".$newsimage."','".$newstontent."','".$addtime."')";//注意'' 字符串的拼接
+        $result = mysqli_query($con, $sql);
+        if($result){
+            echo 'success';
+        }else{
+            die("error" . mysqli_error($con));
+        }
+
+
+    }
+    mysqli_close($con);
+?>
+```
+
