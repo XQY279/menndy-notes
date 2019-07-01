@@ -181,6 +181,7 @@ white-space: nowrap;  强制文本在一行内显示
 
 ```css
 -webkit-line-clamp: 4;  第几行打点
+word-break: break-word; 
 text-overflow: ellipsis;  当对象文本溢出时显示省略标记(…)
 display: -webkit-box;  
 -webkit-box-orient: vertical;
