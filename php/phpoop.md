@@ -4,7 +4,9 @@
 
 在现实世界里我们所面对的事情都是对象，如计算机、电视机、自行车等;
 
+OOP达到了软件工程的三个目标：复用性，灵活性，扩展性
 
+OOP面向对象编程的特点：封装，继承，多态
 
 ##### 对象的主要三个特性：
 
@@ -33,3 +35,127 @@
 - **封装** − 封装是指将现实世界中存在的某个客体的属性与行为绑定在一起，并放置在一个逻辑单元内。
 - **构造函数** − 主要用来在创建对象时初始化对象， 即为对象成员变量赋初始值，总与new运算符一起使用在创建对象的语句中。
 - **析构函数** − 析构函数(destructor) 与构造函数相反，当对象结束其生命周期时（例如对象所在的函数已调用完毕），系统自动执行析构函数。析构函数往往用来做"清理善后" 的工作（例如在建立对象时用new开辟了一片内存空间，应在退出前在析构函数中用delete释放）。
+
+
+
+##### PHP类的格式
+
+```php
+[修饰符] class 类名 {
+  [成员属性] //也叫成员变量
+  [成员方法] //也叫成员函数
+}
+```
+
+
+
+##### PHP 定义类通常语法格式如下：
+
+```php
+<?php
+class phpClass {
+  var $var1;
+  var $var2 = "constant string";
+  
+  function myfunc ($arg1, $arg2){
+     [..]
+  }
+  [..]
+}
+?>
+```
+
+解析如下：
+
+- 类使用 **class** 关键字后加上类名定义。
+- 类名后的一对大括号({})内可以定义变量和方法。
+- 类的变量使用 **var** 来声明, 变量也可以初始化值。
+- 函数定义类似 PHP 函数的定义，但函数只能通过该类及其实例化的对象访问。
+
+
+
+##### 继承
+
+PHP 使用关键字 **extends** 来继承一个类，PHP 不支持多继承，格式如下：
+
+```php
+class Child extends Parent {
+   // 代码部分
+}
+```
+
+
+
+##### 实例
+
+```php
+<?php
+    class Person{
+        public $age;  //成员属性
+        public function say($word){ //成员方法
+            echo "she say {$word}<br>";
+        }
+        public function info(){
+            $this -> say('hello');
+            return $this -> age;
+        }
+    }
+    $menndy = new Person();
+    $menndy -> age = 22;
+    $age = $menndy -> info();
+    echo $age;
+?>
+输出：
+  she say hello
+	22
+```
+
+
+
+#### 构造方法
+
+构造函数是一种特殊的方法。主要用来在创建对象时初始化对象， 即为对象成员变量赋初始值，在创建对象的语句中与 **new** 运算符一起使用。
+
+PHP 5 允许开发者在一个类中定义一个方法作为构造函数，语法格式如下：
+
+```php
+function __construct( $par1, $par2 ) {
+   $this->url = $par1;
+   $this->title = $par2;
+}
+```
+
+
+
+
+
+#### 析构方法
+
+析构函数(destructor) 与构造函数相反，当对象结束其生命周期时（例如对象所在的函数已调用完毕），系统自动执行析构函数。
+
+```php
+ public function __construct($age){
+ 		$this -> age = $age;
+ }
+```
+
+PHP 5 引入了析构函数的概念，这类似于其它面向对象的语言，其语法格式如下：
+
+```php
+<?php
+    class Person{
+        public function __construct($age){//初始化的时候执行
+            $this -> age = $age;
+        }
+        public function data(){
+            return $this -> age;
+        }
+        public function __destruct(){ //可以进行资源的释放操作 会在整个对象销毁的时候执行
+            echo "bye {$this->age}";
+        }
+    }
+    $age = new Person(19);
+    echo $age -> data(); //输出 19
+?>
+```
+
