@@ -10,7 +10,10 @@
 6. [PHP面向对象之封装性](./phpoop2.md)
 7. [PHP面向之继承性](./phpoop3.md)
 8. [PHP抽象类与接口](./phpoop4.md)
-9. 
+9. [PHP常见关键字](./keywords.md)
+10. [PHP错误处理类](error.md)
+
+
 
 
 
