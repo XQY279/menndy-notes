@@ -8,6 +8,9 @@
 4. [PHP PDO](./phppdo.md) 
 5. [PHP面向对象](./phpoop.md) 
 6. [PHP面向对象之封装性](./phpoop2.md)
+7. [PHP面向之继承性](./phpoop3.md)
+8. [PHP抽象类与接口](./phpoop4.md)
+9. 
 
 
 
