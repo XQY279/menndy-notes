@@ -18,3 +18,8 @@ ECMAScript 是javascript的书写规范，javascript是ECMAScript的实现
 - [数组结构赋值与对象解构赋值](jskeepmoving.md)
 - [ES6参数的处理](./anguments.md)
 - [字符串的扩展](arrayplus.md) 
+- [Iterator 与 Generator](iterator.md) 
+- [class](./class.md)
+- [Set, Map](./set.md)
+- [Module](./module.md) 
+

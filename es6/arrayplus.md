@@ -94,5 +94,5 @@ console.log(msg.startsWith("h"));/判断是否是以h开头
 
 
 
-**String.prototype.repeat(重复的次数)**  去重复一段字符串
+**String.prototype.repeat(重复的次数)**  重复一段字符串
 
