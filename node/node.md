@@ -8,6 +8,11 @@
 - [事件驱动机制](./event.md)
 - [模块化](./module.md)
 - [node.js函数](./function.md) 
+- [node.js路由](query.md)
+
+
+
+
 
 
 
