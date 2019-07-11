@@ -9,6 +9,9 @@
 - [模块化](./module.md)
 - [node.js函数](./function.md) 
 - [node.js路由](query.md)
+- [全局方法和工具方法](./tools.md)
+
+
 
 
 
