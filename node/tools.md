@@ -67,3 +67,14 @@ process.on('exit', function(code) {
 console.log("程序执行结束");
 ```
 
+
+
+##### process.nextTick()
+
+```js
+process.nextTick(function(){
+  //回调函数
+})
+```
+
+每次调用process.nextTick()都会将回调函数放入队列中，在下一个轮询tick时取出执行，
