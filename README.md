@@ -6,6 +6,9 @@
 4. [ECMAScript6系列](./es6/js.md) 
 5. [PHP系列](./php/php.md)
 6. [MySQL系列](./mysql/mysql.md) 
-7. [Node.js](./node/node.md)
+7. [Node.js系列](./node/node.md)
+8. [Linux 系列](./linux/linux.md)
+
+
 
 
