@@ -51,7 +51,7 @@ new(test.init())();
 
 答: (去掉代码注释后的答案):
 
-> 
+> this 谁调用指谁 ；如果没有人调用指向全局
 
 
 
@@ -109,7 +109,7 @@ console.log((new C1().name) + (new C2().name) + (new C3().name));
 
 答：
 
-> 
+> yidengundefinedfe
 
 
 
@@ -148,17 +148,32 @@ console.log((new C1().name) + (new C2().name) + (new C3().name));
 
 答：
 
-> 
+```javascript
+var list_li = document.getElementsByTagName("li");
+for (var i = 0; i < list_li.length; i++){
+  (function(j){ 
+    list_li[j].onclick = function() {
+      console.log(j);
+    }
+  })(i)
+}
 
 
+var list_li = document.getElementsByTagName("li");
+for (let i = 0; i < list_li.length; i++){
+  list_li[i].onclick = function() {
+    console.log(i);
+  }
+}
 
 
-
-
-
-
-
-
+var list_li = document.getElementsByTagName("li");
+for (let i = 0; i < list_li.length; i++){
+  list_li[i].onclick = function() {
+    console.log(this.innerHTML);
+  }
+}
+```
 
 
 
@@ -175,17 +190,7 @@ alert(m.v);
 
 答：
 
-> 
-
-
-
-
-
-
-
-
-
-
+> undefined;   函数的参数值是按值传递，引用地址是一个，m将会从写
 
 
 
@@ -207,7 +212,9 @@ function yideng() {
 
 答：
 
-> 
+> 报错：yideng is not a function
+>
+> 因为会将函数提升为var yideng 这时执行yideng，肯定会报错
 
 
 
@@ -227,23 +234,9 @@ function yideng() {
 
 答: 
 
-> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```js
+((i) => `${10 - ( Math.floor(i / 10))}等生` )(98)
+```
 
 
 
@@ -318,7 +311,20 @@ yideng.method(fn, 1);
 
 答：
 
-> 
+```javascript
+var length = 10;
+function fn() {
+  console.log(this.length);
+}
+var yideng = {
+  length: 5,
+  method: function (fn) {
+    // fn(); // ->10
+    arguments[0]();// ->2 会打印出当前函数实参的个数
+  }
+};
+yideng.method(fn, 1);
+```
 
 
 
