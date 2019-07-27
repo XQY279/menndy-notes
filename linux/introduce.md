@@ -16,3 +16,4 @@ Linux发行版说简单点就是讲Linux内核与应用软件做一个打包。�
 
 Virtual Machine 指通过软件模拟的具有完整硬件系统功能的，运行在一个完全隔离环境中的完整计算机系统。流行的虚拟机有VMware、Virtual Box和Virtual PC，它们都能在Windows系统上虚拟出多个计算机。
 
+[linux](./linux.pdf)

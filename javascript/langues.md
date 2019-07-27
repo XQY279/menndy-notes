@@ -3,6 +3,11 @@
 - [数据类型](#数据类型)
 - [变量](#变量)
 - [函数](#函数)
+- [对象](#对象)
+- [prototype](#prototype)
+- [this和作用域](#this和作用域)
+- [call&apply](#call&apply)
+- [箭头函数](#箭头函数)
 
 
 
@@ -12,7 +17,9 @@
 
 
 
-#### Lint & Hint
+
+
+### Lint & Hint
 
 - 目的：检测JavaScript代码标准
 - 原因：JavaScript代码诡异，保证团队代码规范
@@ -68,7 +75,7 @@ typeof not_defined_var //"undefined"
 
 
 
-#### 变量
+### 变量
 
 在应用程序中，使用变量来为值命名，变量的名称为identifiers
 
@@ -103,7 +110,7 @@ a = 2;
 
 
 
-#### 函数
+### 函数
 
 一个函数就是一个可以被外部代码调用（或者函数本身递归调用）的子程序
 
@@ -152,4 +159,154 @@ fn(2, 3);//5
 fn(2);//5
 fn();//5
 ```
+
+
+
+
+
+### 对象
+
+##### 定义对象
+
+1. 字面量
+2. 构造函数
+
+```javascript
+var obj = {
+	prop: 'value',
+  fn: function)(){}
+};
+
+var date = new Date()
+```
+
+#### 构造函数
+
+构造函数和普通的函数没什么区别，使用`new`关键字调用就是构造函数，使用构造函数可以实例化一个对象。
+
+##### 函数的返回值有两种可能
+
+普通函数返回值
+
+1. 显试调用`return`返回`return`后表达式的求值，
+2. 没有调用`return`返回`undefined`
+
+构造函数返回值
+
+1. 没有返回值
+2. 简单数据类型
+3. 对象类型
+
+前两种情况构造函数返回构造对象的实例，实例化对象正是利用是个特性
+
+第三种构造函数和普通函数一致，返回`return`后表达式的结果
+
+```javascript
+function People(){
+  this.name = name;
+  this.age = age;
+}
+
+var people = new People('Byron', 26)
+```
+
+
+
+
+
+
+
+### prototype
+
+1. 每个函数都有一个`prototype`对象属性，对象内有一个`constructor`属性，默认指向函数本身
+2. 每个对象都有一个`__ proto__`的属性其指向它父类的prototype
+
+```javascript
+function Person(name){
+  this.name = name;
+}
+Person.prototype.print = function(){
+  console.log(this.name);
+}
+var p1 = new Person('Byron');
+var p2 = new Person('Casper')
+p1.print();
+p2.print();
+```
+
+
+
+
+
+### this和作用域
+
+##### 作用域可以通俗的理解
+
+1. 我是谁
+2. 我有哪些马仔
+
+我是谁的回答就是`this`
+
+马仔就是我的全局变量
+
+
+
+#### this场景
+
+##### 普通函数
+
+1. 严格模式: `undefined`
+2. 非严格模式下：全局对象
+   1. node：`global`
+   2. 浏览器：`window`
+
+##### 构造函数：对象的实例
+
+##### 对象方法：对象本身
+
+
+
+
+
+### call&apply
+
+```javascript
+fn.call(content, arg1, arg2, ...,argn)
+fn.apply(content, args)
+```
+
+```js
+function isNumber(obj){
+  return Object.prototype.toString.call(obj) === '[object Number]'
+}
+```
+
+
+
+#### Function.prototype.bind
+
+`bind`返回一个新函数，函数的作用域为`bind`参数
+
+```javascript
+function fn(){
+  this.i = 0;
+  setInterval(function(){
+    console.log(this.i++)
+  }.bind(this), 500)
+}
+```
+
+
+
+
+
+### 箭头函数
+
+`() => {}`
+
+箭头函数是ES6提供的新特性， 时间写的函数表达式，拥有词法作用域和this 值
+
+
+
+
 
