@@ -8,7 +8,7 @@
 - 驱动开发，指导设计:代码被测试的前提是代码本身的可测试性，那么要保证代码 的可测试性，就需要在开发中注意API的设计，TDD将测试前移就是起到这么一个 作用 
 - 保证重构:互联网行业产品迭代速度很快，迭代后必然存在代码重构的过程，那怎么才能保证重构后代码的质量呢?有测试用例做后盾，就可以大胆的进行重构
 
-#### 单元测试
+### 单元测试
 
 - 目的:单元测试能够让开发者明确知道代码结果
 
@@ -46,7 +46,7 @@
 
 
 
-##### 使用[karma](http://karma-runner.github.io/latest/index.html)进行测试
+### 使用[karma](http://karma-runner.github.io/latest/index.html)进行测试
 
 1. 通过`npm init -y` 初始化安装 `package.json`
 
@@ -87,6 +87,172 @@
 8. 配置代码覆盖率: 使用 [karma-coverage](https://www.npmjs.com/package/karma-coverage) 通过`npm i karma-coverage --save-dev`安装
 
 9. 通过 `karma start` 运行
+
+
+
+
+
+### 对接口进行测试
+
+1. 使用[koa](https://koa.bootcss.com/)服务 
+
+   ```javascript
+   index.js
+   
+   const Koa = require('koa');
+   const app = new Koa();
+   
+   app.use(async ctx => {
+     ctx.body = {
+         data: 'hello', //返回的数据
+     }
+   })
+   
+   app.listen(3000);
+   
+   module.export = app;
+   ```
+
+2. 使用[supertest](https://www.npmjs.com/package/supertest) 测试接口
+
+   ```javascript
+   index.spec.js
+   
+   const app = require('./index');
+   const request = require('supertest');
+   
+   function req(){
+       return request(app.listen())
+   }
+   
+   describe('Node server test', function(){
+       it('获取服务数据', function(done){
+           request()
+           .get('/')
+           .set('Accept','application/json')
+           .expect('Content-type',/json/)
+           .expect(200)
+           .end(function(err, res){
+               if(res.body.data == 'hello'){
+                   done();
+               }else{
+                   done(new Error(err));
+               }
+           })
+       })
+   })
+   ```
+
+3. 使用[mocha](https://mochajs.org/)框架 ，使用[mochawesome](https://www.npmjs.com/package/mochawesome)生成报表
+
+   ```javascript
+   mocha.js
+   
+   const Mocha = require('mocha');
+   const mocha = new Mocha({
+       reporter: 'mochawesome', //使用报表
+       reporterOptions:{
+           reportDir: './docs/mochawesome', //报表生成的路径
+       }
+   });
+   
+   mocha.addFile('./service/index.spec.js')
+   mocha.run(function(err){
+       if(err){
+           process.exit(1);
+       }else{
+           console.log('all down')
+           process.exit(0);        
+       }
+   })
+   ```
+
+4. 运行上面的`mocha.js`即可
+
+
+
+
+
+### e2e 端对端
+
+npm安装[selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver)；并且要安装针对于不同浏览器的插件才能打开浏览器，安装后将压缩包解压到测试文件的根目录，
+
+f2etest: https://github.com/alibaba/f2etest, 进行浏览器兼容性测试
+
+Macaca：https://github.com/alibaba/macaca
+
+[uirecorder](https://uirecorder.com/) 一端录制，多端使用的便捷 UI 自动化测试工具。
+
+
+
+[Rize](https://rize.js.org/zh-CN/) : 进行 UI 测试或 E2E 测试
+
+```javascript
+const Rize = require('rize');
+const rize = new Rize();
+
+rize
+  .goto('https://github.com/')
+  .type('input.header-search-input', 'node')
+  .press('Enter')
+  .waitForNavigation()
+  .assertSee('Node.js')
+  .end()  // 别忘了调用 `end` 方法来退出浏览器！
+```
+
+
+
+### UI测试
+
+[phantomcss](https://www.npmjs.com/package/phantomcss) 
+
+[backstopjs](https://www.npmjs.com/package/backstopjs) 
+
+​	参考链接： https://www.cnblogs.com/xumqfaith/p/8108784.html
+
+1. 通过`backstop init` 初始化; 然后会在当前文件夹下生成`backstop.json`; 在这里配置一些参数
+
+```json
+"viewports": [ //配置屏幕尺寸
+    {
+      "label": "phone",
+      "width": 375,
+      "height": 667
+    },
+    {
+      "label": "tablet",
+      "width": 1024,
+      "height": 768
+    }
+  ],
+
+"scenarios": [
+    {
+      "label": "map",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",//cookie
+      "url": "https://www.google.com/", //项目地址
+    }
+  ],
+
+
+"paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference", //UI的效果图 参考的图片
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "./docs/sbackstop_data/html_report", //报表输出的文件夹
+    "ci_report": "backstop_data/ci_report"
+  }
+
+
+```
+
+
+
+2. 最后通过 `backstop test` 运行
+
+
+
+
 
 
 
@@ -154,4 +320,10 @@ http://webdriver.io webdriver I/O
 
 
 
+
+
+
+## 相关链接
+
+https://www.jianshu.com/p/c7bde9c34e5b
 
