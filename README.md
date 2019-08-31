@@ -6,12 +6,13 @@
 4. [JavaScript系列](./javascript/index.md)
 5. [sass系列](./sass/sass.md)
 6. [ECMAScript6系列](./es6/js.md) 
-7. [PHP系列](./php/php.md)
-8. [MySQL系列](./mysql/mysql.md) 
-9. [Node.js系列](./node/node.md)
-10. [Linux 系列](./linux/linux.md)
-11. [network](./network/index.md)
-12. [Nginx](./nginx/index.md)
+7. [前端工程化](./build/index.md)
+8. [PHP系列](./php/php.md)
+9. [MySQL系列](./mysql/mysql.md) 
+10. [Node.js系列](./node/node.md)
+11. [Linux 系列](./linux/linux.md)
+12. [network](./network/index.md)
+13. [Nginx](./nginx/index.md)
 
 
 
