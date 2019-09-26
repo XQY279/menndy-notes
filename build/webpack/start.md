@@ -1,4 +1,4 @@
-## webpack介绍
+## webpack
 
 webpack是前端模块化的打包工具
 
@@ -29,30 +29,38 @@ webpack是前端模块化的打包工具
 
 #### 安装webpack
 
-将webpack安装到全局 `npm install webpack -g`
+| Command                              | Description                            |
+| ------------------------------------ | -------------------------------------- |
+| `npm init`                           | 生成项目说明书                         |
+| `npm install webpack --save-dev`     | 下载webpack                            |
+| `npm install webpack-cli --save-dev` | 下载webpack-cli(通过命令行使用webpack) |
 
-将webpack安装到项目中  `npm install --save-dev webpack`
+
+
+#### 使用
+
+##### 默认情况下当前项目目录下`src/index`为项目的入口文件
 
 
 
-```javascript
-npm init                              /生成项目说明书
-cnpm install webpack --save-dev       /下载webpack
-cnpm install webpack-cli --save-dev	  /下载webpack-cli(通过命令行使用webpack)
+packge.json
 
-需要在当前文件夹下的src文件夹中找index.js文件作为入口文件，将打包的文件放在新建的dist文件夹下的main.js
-可以通过npm run 运行scripts中的脚本
-
-npm run webpack                        /运行webpack
-"dev": "npm run webpack -- --mode development", //运行开发模式    不压缩
-"prod": "npm run webpack -- --mode production --watch"//运行生产模式 (--watch 监听)  压缩
+```json
+"dev": "webpack --mode development", //运行开发模式 不压缩
+"prod": "webpack --mode production"  //运行为生产模式 压缩
 ```
 
 
 
+安装bable
+
+`npm install babel-preset-env --save-dev`
 
 
-#### 配置
+
+
+
+#### 配置文件
 
 在当前根目录下 创建一个 `webpack.config.js`文件 用来写配置文件
 
@@ -89,3 +97,158 @@ Outout：告诉webpack把编译好的文件放在哪
 Loaders：告诉webpack在添加到依赖图之前如何转换一个文件，本质上是一个函数
 
 Plugins：在编译的过程中添加你想要的任何操作
+
+`cnpm install webpack-dev-server` 下载模拟服务器
+
+
+
+
+
+#### loaders
+
+`cnpm install sass-loader node-sass --save-dev` 下载将sass文件转换为css文件的loader
+
+`cnpm install css-loader --save-dev` 下载将css转换为js的loader
+
+`cnpm install style-loader --save-dev` 将js形式的css形成style标签注入到HTML中
+
+`cnpm install --save-dev mini-css-extract-plugin` 下载将css插入到HTML中的插件
+
+
+
+开发模式配置文件
+
+```javascript
+module:{
+    rules: [{
+        test:/\.scss$/,//匹配文件
+        use: ["style-loader","css-loader","sass-loader"] //使用loader
+    }]
+}/css形成style标签注入到HTML中
+```
+
+
+
+生产模式配置文件
+
+```javascript
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");/引入插件
+
+module:{
+    rules: [{
+        test:/\.scss$/,
+        use: [MiniCssExtractPlugin.loader,"css-loader","sass-loader"]
+    }]
+},
+plugins: [
+   new MiniCssExtractPlugin();/通过new的形式使用插件
+],/将css形成一个css文件插入到HTML中
+```
+
+
+
+package.json
+
+```javascript
+npm run webpack-dev-server -- --env.mode development --hot ;/--hot 模拟服务器热模块启动实现页面编辑后的局部刷新
+```
+
+
+
+`cnpm install babel-loader @babel/core @babel/preset-env --save-dev` 下载babel插件 es6 转es5
+
+```javascript
+module: {
+    rules: [{
+        test: /\.js$/,
+        use: [{
+            loader: "babel-loader",
+            options: {
+                presets: ["@babel/preset-env"]
+            }
+        }]
+    }]
+},
+```
+
+
+
+`cnpm install url-loader file-loader --save-dev`  用于将文件转换为base64 URI
+
+```javascript
+{
+    test: /\.(jpg|png)$/,
+        use:{
+            loader: "url-loader"
+            options: {
+                limit: 8192;/限制大于8k将会生成一个图片 否则是base64编码
+            }
+        }
+}
+```
+
+
+
+ **devtool**  代码映射 方便调试
+
+```javascript
+devtool: "source-map",/在配置文件中添加
+```
+
+
+
+
+
+#### 性能优化
+
+**最优状态** 
+
+<=200KB的初始化JavaScript
+
+<=100KB的初始化css
+
+HTTP1.0/1.1：<=6个请求
+
+HTTP2.0 : <=20个请求
+
+90%的代码覆盖率，10%未使用代码
+
+
+
+**静态方式：**
+
+```javascript
+entry: { /多个入口文件写成对象的形式
+    index1: "./src/index1.js",
+    index2: "./src/index2.js"
+},
+```
+
+
+
+**"动态"方式：**
+
+`cnpm install @babel/plugin-syntax-dynamic-import --save-dev` 下载插件
+
+```javascript
+方法一：
+button.onclick = function(){
+    import("./footer").then((footer) =>{
+        document.body.appendChild(footer.divTop);
+        document.body.appendChild(footer.divBottom);
+    })  
+};/当点击的时候加载footer.js
+```
+
+```javascript
+方法二：
+const getFooter = () => import("./footer");
+
+button.onclick = function(){
+    getFooter().then((footer) =>{
+        document.body.appendChild(footer.divTop);
+        document.body.appendChild(footer.divBottom);
+    }) 
+}
+```
+
