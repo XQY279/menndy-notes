@@ -12,5 +12,13 @@
 10. [Transform形状变换](./transform.md)
 11. [transition过渡动画](./transition.md)
 12. [animation动画](./animation.md)
-13. [CSS3 3D变换动画](./css3d.md)
+13. [CSS3D](./css3d.md)
 14. [OO-CSS](./csscore.md)
+15. [CSS后处理器](./cssafter.md)
+16. [matrix3d矩阵变换和动画变换](https://www.jianshu.com/p/c37cf06d5b92)
+17. [灵活运用CSS开发技巧](https://juejin.im/post/5d4d0ec651882549594e7293)
+18. [BFC,IFC,GFC,FFC](./core.md)
+19. [CSS分层](./csslayout.md)
+
+
+
