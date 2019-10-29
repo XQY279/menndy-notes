@@ -11,8 +11,7 @@
 - [浏览器存储](https://github.com/ljianshu/Blog/issues/25) 
 - [从URL输入到页面展现到底发生什么](https://github.com/ljianshu/Blog/issues/24)
 - [深入理解浏览器的缓存机制](https://github.com/ljianshu/Blog/issues/23)
-
-
+- [V8垃圾回收机制](https://www.jianshu.com/p/64ef0ed1b957?utm_campaign=hugo&utm_medium=reader_share&utm_content=note&utm_source=weixin-friends)
 
 https://github.com/ljianshu/Blog
 
